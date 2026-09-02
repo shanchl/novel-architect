@@ -83,7 +83,7 @@ Useful options:
 --dry-run
 ```
 
-`--dry-run` prints the target path without creating files. The script rejects negative counts, refuses to create directly under a filesystem root, and normalizes unsafe slugs.
+`--dry-run` prints the target path without creating files. The script rejects negative counts, refuses to create directly under a filesystem root, and normalizes unsafe slugs. Chinese titles are transliterated into pinyin slugs when possible, for example `归墟灯塔` becomes `gui-xu-deng-ta`.
 
 ### Core References
 
@@ -185,7 +185,7 @@ python D:\skills\novel-architect\scripts\init_novel.py "归墟灯塔" --root nov
 --dry-run
 ```
 
-`--dry-run` 只打印目标路径，不创建文件。脚本会拒绝负数字数和负章节数，拒绝直接在磁盘根目录创建项目，并会清洗不安全的 slug。
+`--dry-run` 只打印目标路径，不创建文件。脚本会拒绝负数字数和负章节数，拒绝直接在磁盘根目录创建项目，并会清洗不安全的 slug。中文标题会尽量转写为拼音 slug，例如 `归墟灯塔` 会生成 `gui-xu-deng-ta`。
 
 ### 核心参考文档
 
