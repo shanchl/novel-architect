@@ -78,6 +78,8 @@ Use Markdown for human-readable canon and JSON/YAML for structured state. Prefer
 - `permanent.md`: always-load facts: core concept, themes, hard rules, protagonist essentials, master outline.
 - `state_snapshots/snapshot_chapter_####.md`: every 10 chapters or major turning point.
 - `open_threads.md`: unresolved questions, promises, conflicts, and pending reveals.
+- `information_ledger.yaml`: who knows each important fact, when they learned it, and through which channel.
+- `scene_clock.yaml`: opening and ending time/location for chapters, used for next-chapter handoff checks.
 
 `09_writing/`
 

@@ -325,6 +325,8 @@ updated_at: {yaml_quote(now)}
         "08_memory/novel_bible.md": "# Novel Bible\n",
         "08_memory/permanent.md": "# Permanent Memory\n",
         "08_memory/open_threads.md": "# Open Threads\n",
+        "08_memory/information_ledger.yaml": "facts: []\n",
+        "08_memory/scene_clock.yaml": "chapters: []\n",
         "09_writing/style.md": "# Style\n",
         "09_writing/writing_rules.md": "# Writing Rules\n",
         "09_writing/forbidden_patterns.md": "# Forbidden Patterns\n\n- 微微一愣\n- 不禁\n- 嘴角勾起\n- 眼中闪过\n- 空气仿佛凝固\n- 倒吸一口凉气\n- 这一刻终于明白\n- 命运的齿轮\n",

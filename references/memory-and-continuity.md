@@ -32,6 +32,7 @@ Short-term memory, prioritized for drafting:
 - previous 3-5 chapter summaries
 - current unresolved threads
 - current character states for involved characters
+- current information ledger and scene clock when they exist
 
 ## Context Pack
 
@@ -49,10 +50,13 @@ Avoid raw manuscript loading unless checking exact wording, revising a specific 
 
 ## Pre-Draft Continuity Check
 
-Before drafting, check:
+Before drafting, follow `chapter-gates.md` and check logic before prose:
 
+- Chapter handoff: previous chapter ending time/location and new chapter opening time/location match or explicitly jump.
 - Character location: every involved character can plausibly appear in the planned scene.
 - Character knowledge: no one acts on information they have not learned.
+- Character possessions/access: no one holds an object, report, sample, message, body, authority, or conclusion they cannot yet possess.
+- Information chain: every new fact has a source channel and does not break earlier secrecy, promises, or institutional limits.
 - Character motivation: actions follow goals, fear, relationship pressure, or a clearly introduced trigger.
 - Timeline: event order, dates, age, season, travel time, and recovery time are plausible.
 - World rules: abilities, technology, institutions, and terminology follow established limits.
@@ -72,6 +76,8 @@ After a chapter is saved, update:
 - Plotlines: status, known information, next step, estimated resolution, completion.
 - Foreshadowing: new planted items, progressed items, resolved items, abandoned items with reason.
 - Open threads: unresolved promises, mysteries, conflicts, and reader expectations.
+- Information ledger: who learned what, when, by what channel, and what remains unknown.
+- Scene clock: chapter end time/location and any delayed consequences.
 - Project status: last written chapter, total words when known, next recommended step.
 
 ## Continuity Report Shape

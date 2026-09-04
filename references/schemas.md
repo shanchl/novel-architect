@@ -21,6 +21,78 @@ next_action: "plan"
 updated_at: ""
 ```
 
+## `08_memory/information_ledger.yaml`
+
+```yaml
+facts:
+  - id: "IF-001"
+    chapter_introduced: 1
+    fact: ""
+    known_by: []
+    not_known_by: []
+    source_channel: ""
+    learned_at: ""
+    evidence_file: ""
+    constraints: []
+    notes: ""
+```
+
+## `08_memory/scene_clock.yaml`
+
+```yaml
+chapters:
+  - chapter: 1
+    opening_time: ""
+    opening_location: ""
+    ending_time: ""
+    ending_location: ""
+    elapsed_time: ""
+    unresolved_immediate_actions: []
+    next_chapter_handoff: ""
+```
+
+## `10_review/continuity_pre_chapter_0001.md`
+
+```markdown
+# Continuity Pre-Check · Chapter 0001
+
+## Time Handoff
+
+## Character Locations
+
+## Character Knowledge
+
+## Character Possessions and Access
+
+## Information Chain
+
+## Domain and Canon Constraints
+
+## Blocking Risks
+```
+
+## `10_review/continuity_post_chapter_0001.md`
+
+```markdown
+# Continuity Post-Check · Chapter 0001
+
+## Ending State
+
+## New Facts
+
+## Information Learned By Character
+
+## Objects and Evidence
+
+## State Updates
+
+## Timeline Updates
+
+## Summary Updates
+
+## Residual Risks
+```
+
 ## `00_project/change_log.md`
 
 ```markdown

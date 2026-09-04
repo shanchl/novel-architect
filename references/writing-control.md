@@ -1,6 +1,6 @@
 # Writing Control
 
-This skill should help sustain a coherent long-form voice across many chapters. Each novel's style rules live only in that novel's `09_writing/` folder.
+This skill should help sustain a coherent long-form voice across many chapters. Each novel's style rules live only in that novel's `09_writing/` folder. De-AI writing control means enforcing the current project's style and eliminating generic, repetitive, over-explanatory, or template-like prose that violates those files.
 
 ## Style Files
 
@@ -45,7 +45,7 @@ This skill should help sustain a coherent long-form voice across many chapters. 
 
 ## Anti-AI Pattern Checks
 
-Scan drafts for banned or overused expressions, including project-specific entries and common patterns such as:
+Load the project's `style.md`, `writing_rules.md`, `forbidden_patterns.md`, `vocabulary.md`, and `prompts.md` before final prose review. Scan drafts for banned or overused expressions, including project-specific entries and common patterns such as:
 
 - "微微一愣"
 - "不禁"
@@ -68,8 +68,12 @@ Also check pattern-level issues:
 - repeated explanatory transitions that flatten tension
 - every scene ending with the same style of hook
 - characters speaking with interchangeable diction
+- repeated chapter-to-chapter sentence shapes, imagery, transitions, and explanatory turns
+- vague intensifiers or summary claims where the project's style requires concrete sensory, procedural, or behavioral proof
 
 For each detected pattern, cite a short example, classify severity, and propose a scene-specific replacement strategy. Prefer local rewrites over global deletion.
+
+Do not impose a universal prose voice. If a project intentionally uses ornate, plain, comedic, lyrical, hardboiled, classical, or experimental prose, enforce that project style instead of replacing it with a generic clean style.
 
 ## Chapter Quality Review
 

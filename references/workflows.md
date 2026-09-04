@@ -39,7 +39,7 @@ The user may use explicit commands or plain language. Treat natural-language req
 
 `/novel write`
 
-- Write the next or requested chapter by following the chapter drafting workflow below.
+- Write the next or requested chapter by following the chapter drafting workflow below. The chapter-start gates are blocking: time handoff and information chain must be coherent before prose drafting continues.
 
 `/novel continue`
 
@@ -53,11 +53,12 @@ The user may use explicit commands or plain language. Treat natural-language req
 
 - Run continuity checks across selected files. For ultra-long projects, start from structured memory and report coverage explicitly: status, novel bible, permanent memory, chapter table of contents, all active character states, all relationship entries, full timeline, all active plotlines, all unresolved foreshadowing, all state snapshots, and recent 3-5 chapter summaries.
 - For broad checks, include boundary chapters around every state snapshot, chapters where relationships changed, chapters where foreshadowing was planted or paid off, timeline gaps, and any chapters named by the user. Read full manuscripts only for implicated chapters, missing summaries, exact wording disputes, or high-severity contradictions.
+- Apply the gate order from `chapter-gates.md`: cross-chapter time, information chain, domain/canon constraints, then prose/style. Report logic defects before wording defects.
 - Each check report should state which files were inspected, which chapters were represented only by summaries or snapshots, what was not checked, and the residual risk.
 
 `/novel review`
 
-- Review chapter quality: scene purpose, pacing, voice, character motivation, tension, reveal control, style compliance, banned patterns, and ending hook.
+- Review chapter quality: scene purpose, pacing, voice, character motivation, tension, reveal control, style compliance, banned patterns, repeated phrasing, and ending hook. Use the current project's style files as the source of de-AI writing control.
 
 `/novel revise`
 
@@ -76,14 +77,16 @@ The user may use explicit commands or plain language. Treat natural-language req
 
 1. Determine the target chapter from the request, `status.yaml`, `chapter_toc.yaml`, and existing files.
 2. Build a context pack using [memory-and-continuity.md](memory-and-continuity.md).
-3. Generate a chapter writing plan with opening, scene list, central conflict, emotional progression, reveals, foreshadowing, climax, and ending hook.
-4. Save pre-draft continuity notes in `10_review/continuity_pre_chapter_####.md` when working in files.
-5. Draft the chapter from the chapter plan and writing rules.
-6. Run quality and continuity checks.
+3. Create or update `10_review/continuity_pre_chapter_####.md` using [chapter-gates.md](chapter-gates.md). It must prove the opening time, location, character knowledge, possessions, and information channels.
+4. Generate a chapter writing plan with opening, scene list, central conflict, emotional progression, reveals, foreshadowing, climax, and ending hook.
+5. Draft the chapter from the chapter plan and the current project's `09_writing/` files.
+6. Run quality, continuity, domain, repetition, and style checks. Use `scripts/check_chapter.py` when working in a local project and the script covers the needed checks.
 7. Save the chapter manuscript in `06_chapters/chapter_####.md`.
 8. Generate `07_summaries/chapter_####_summary.md` and `07_summaries/chapter_####_short.md`.
-9. Update character states, timeline, plotlines, foreshadowing, open threads, and status.
-10. Every 10 chapters, write a state snapshot in `08_memory/state_snapshots/`.
+9. Update character states, timeline, plotlines, foreshadowing, open threads, and `10_review/continuity_post_chapter_####.md`.
+10. Re-read or grep changed YAML/Markdown files to confirm the intended key fields actually landed.
+11. Update `00_project/status.yaml` only after the manuscript, summaries, state updates, timeline, and post-chapter gate are coherent.
+12. Every 10 chapters, write a state snapshot in `08_memory/state_snapshots/`.
 
 ## Change Impact Analysis
 
@@ -113,3 +116,13 @@ After the edit, append to `00_project/change_log.md`:
 - files changed
 - affected chapters, summaries, plotlines, foreshadowing, timeline entries, and character states
 - remaining risks or checks still needed
+
+## Skill Versioning
+
+When editing the skill itself, update the skill's semantic version before finishing:
+
+- Patch bump for instruction, reference, script, or validation changes.
+- Minor bump for new workflows, new project skeleton files, or backward-compatible capability additions.
+- Major bump for incompatible project layout changes or changes that require migrating existing novels.
+
+Keep `VERSION`, `SKILL.md` metadata, and `README.md` aligned.

@@ -2,6 +2,8 @@
 
 [English](#english) | [简体中文](#简体中文)
 
+Version: `1.0.0`
+
 ## English
 
 `novel-architect` is a Codex skill for project-managed long-form fiction creation. It is designed for medium, long, serial, and ultra-long novels where continuity, structured memory, character state, foreshadowing, timeline, and style control matter more than simply generating the next block of prose.
@@ -12,6 +14,7 @@
 - Maintains a novel bible, requirements, concept notes, worldbuilding, characters, relationships, outlines, plotlines, foreshadowing, timeline, chapter plans, manuscripts, summaries, long-term memory, writing rules, reviews, and change logs.
 - Builds focused context packs instead of loading the entire manuscript.
 - Checks continuity before and after chapter drafting.
+- Enforces chapter-start gates for time handoff, information chain, domain/canon constraints, and project-specific style.
 - Updates summaries, character states, plotlines, foreshadowing, timeline, and project status after each chapter.
 - Supports change impact analysis before modifying established canon.
 - Supports anti-AI writing-pattern checks through forbidden phrases, rhythm checks, cliche detection, repeated reaction beats, and voice consistency review.
@@ -90,7 +93,9 @@ Useful options:
 - `SKILL.md`: entrypoint and routing rules.
 - `references/project-structure.md`: canonical novel project layout.
 - `references/workflows.md`: `/novel` workflows, versioning, and change impact analysis.
+- `references/chapter-gates.md`: chapter-start gates, information chains, and blocking review order.
 - `references/memory-and-continuity.md`: memory layers, context packs, continuity checks, and post-chapter updates.
+- `references/domain-checks.md`: project-specific domain and terminology checks.
 - `references/writing-control.md`: style control, anti-AI pattern checks, and quality review.
 - `references/schemas.md`: suggested YAML and Markdown templates.
 
@@ -114,6 +119,7 @@ The current version has been checked with `quick_validate.py`, script syntax che
 - 维护小说圣经、需求、核心概念、世界观、人物、人物关系、大纲、剧情线、伏笔、时间线、章节计划、章节正文、章节摘要、长期记忆、写作规则、审查结果和修改记录。
 - 构建精简的章节上下文包，而不是直接加载整部小说正文。
 - 在章节写作前后执行连续性检查。
+- 写章前执行时间衔接、信息链、项目设定和项目文风门禁。
 - 每章完成后更新摘要、人物状态、剧情线、伏笔、时间线和项目状态。
 - 在修改既定设定前执行修改影响分析。
 - 支持去 AI 化写作检查，包括禁用词、句式节奏、套路表达、重复反应、角色口吻同质化等。
@@ -192,7 +198,9 @@ python D:\skills\novel-architect\scripts\init_novel.py "归墟灯塔" --root nov
 - `SKILL.md`：skill 入口和路由规则。
 - `references/project-structure.md`：小说项目标准目录结构。
 - `references/workflows.md`：`/novel` 工作流、版本归档和修改影响分析。
+- `references/chapter-gates.md`：章节开头门禁、信息链和阻断式检查顺序。
 - `references/memory-and-continuity.md`：记忆层级、上下文包、连续性检查和章后更新。
+- `references/domain-checks.md`：项目内设定、术语、计量和专业流程检查。
 - `references/writing-control.md`：写作风格控制、去 AI 化模式检查和质量审查。
 - `references/schemas.md`：推荐的 YAML 和 Markdown 模板。
 
