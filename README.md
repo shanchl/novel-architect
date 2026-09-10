@@ -2,7 +2,7 @@
 
 [English](#english) | [简体中文](#简体中文)
 
-Version: `1.0.0`
+Version: `1.0.3`
 
 ## English
 

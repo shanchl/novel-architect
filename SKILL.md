@@ -3,7 +3,7 @@ name: novel-architect
 description: Manage long-form novel projects with isolated story bibles, structured memory, outlines, chapter plans, drafting, summaries, continuity checks, and change impact analysis. Use for novella, serial, long novel, or million-word fiction workflows, not for one-off short prose.
 metadata:
   short-description: Long-form novel engineering and memory
-  version: 1.0.0
+  version: 1.0.3
 ---
 
 # Novel Architect
@@ -14,7 +14,7 @@ This skill's core job is continuity and project control, not merely prose genera
 
 ## Skill Version
 
-Current version: `1.0.0`.
+Current version: `1.0.3`.
 
 When changing this skill's instruction files, references, scripts, or default project skeletons, increment the patch version before finishing the edit unless the user explicitly requests a different semantic-version bump. Keep `VERSION`, this frontmatter metadata, and `README.md` aligned.
 
@@ -37,6 +37,7 @@ When changing this skill's instruction files, references, scripts, or default pr
 - When changing established canon, run change impact analysis before editing dependent files.
 - Preserve prior versions of important canon files in `99_archive/` or record enough change history to explain what changed, why, and what was affected.
 - Treat de-AI writing control as project-specific style enforcement. Load and obey the current novel's `09_writing/style.md`, `writing_rules.md`, `forbidden_patterns.md`, `vocabulary.md`, and `prompts.md`; do not substitute a generic prose style.
+- Treat the skill installation directory as read-only during ordinary novel work. Do not edit `SKILL.md`, `README.md`, `VERSION`, `references/`, `scripts/`, `agents/`, or any other skill file while creating, planning, drafting, reviewing, or repairing a novel project. Modify the skill only when the user explicitly asks to update, maintain, install, or migrate the skill itself.
 
 ## References
 

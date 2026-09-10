@@ -42,11 +42,12 @@ For each chapter, assemble a compact context pack containing:
 - non-negotiable canon: premise, theme, core conflict, world hard rules
 - active cast: role, current location, goal, knowledge, emotional state, relationship state
 - recent events: previous 3-5 chapter short summaries, plus detailed summaries when needed
+- immediate handoff: the full manuscripts of the previous two chapters when drafting or revising a new chapter; always load both in full so opening time/location, voice, and unresolved scene momentum are protected
 - chapter mandate: chapter goal, events, conflict, reveal, foreshadowing, hook, target word count
 - continuity watchlist: due plotlines, due foreshadowing, timeline constraints, forbidden outcomes
 - style pack: relevant writing rules, banned phrases, character voice notes
 
-Avoid raw manuscript loading unless checking exact wording, revising a specific passage, or summarizing a chapter that lacks a summary.
+Avoid older raw manuscript loading unless checking exact wording, revising a specific passage, or summarizing a chapter that lacks a summary. The previous two chapters are the standing exception and are always read in full for chapter drafting and revision.
 
 ## Pre-Draft Continuity Check
 
