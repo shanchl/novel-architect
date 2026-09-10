@@ -4,7 +4,9 @@
 from __future__ import annotations
 
 import argparse
+import datetime as dt
 import re
+import shutil
 from pathlib import Path
 
 
@@ -12,6 +14,7 @@ ROOT = Path(__file__).resolve().parents[1]
 VERSION_FILE = ROOT / "VERSION"
 SKILL_FILE = ROOT / "SKILL.md"
 README_FILE = ROOT / "README.md"
+BACKUP_DIR = ROOT / ".version_backups"
 
 
 def parse_version(value: str) -> tuple[int, int, int]:
@@ -37,12 +40,27 @@ def replace_once(text: str, pattern: str, replacement: str, path: Path) -> str:
     return updated
 
 
+def create_backup(version: str) -> Path:
+    timestamp = dt.datetime.now().strftime("%Y%m%d_%H%M%S")
+    destination = BACKUP_DIR / f"novel-architect_{version}_{timestamp}"
+
+    def ignore(_directory: str, names: list[str]) -> set[str]:
+        skipped = {".git", ".version_backups", "__pycache__"}
+        return {name for name in names if name in skipped or name.endswith(".pyc")}
+
+    shutil.copytree(ROOT, destination, ignore=ignore)
+    return destination
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Bump skill semantic version.")
     parser.add_argument("part", nargs="?", choices=["major", "minor", "patch"], default="patch")
+    parser.add_argument("--no-backup", action="store_true", help="Do not snapshot the current skill before bumping")
     args = parser.parse_args()
 
     current = parse_version(VERSION_FILE.read_text(encoding="utf-8"))
+    current_version = ".".join(str(part) for part in current)
+    backup_path = None if args.no_backup else create_backup(current_version)
     new_version = ".".join(str(part) for part in bump(current, args.part))
 
     VERSION_FILE.write_text(new_version + "\n", encoding="utf-8")
@@ -56,6 +74,8 @@ def main() -> int:
     readme = replace_once(readme, r"^Version: `\d+\.\d+\.\d+`$", f"Version: `{new_version}`", README_FILE)
     README_FILE.write_text(readme, encoding="utf-8")
 
+    if backup_path is not None:
+        print(f"backup: {backup_path}")
     print(new_version)
     return 0
 

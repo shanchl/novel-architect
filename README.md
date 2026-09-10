@@ -2,7 +2,7 @@
 
 [English](#english) | [简体中文](#简体中文)
 
-Version: `1.0.3`
+Version: `1.0.4`
 
 ## English
 
@@ -109,6 +109,13 @@ python C:\Users\chang\.codex\skills\.system\skill-creator\scripts\quick_validate
 
 The current version has been checked with `quick_validate.py`, script syntax checks, initialization tests, edge-case slug tests, negative-input rejection tests, dry-run tests, and an independent review pass.
 
+### Local Helper Scripts
+
+- `scripts/context_pack.py <project> --chapter N`: writes `10_review/context_pack_chapter_####.md`.
+- `scripts/check_chapter.py <project> --chapter N`: writes `10_review/gate_chapter_####.md` and prints deterministic issues.
+- `scripts/sync_term.py <project> --term OLD --replace-with NEW`: dry-runs a project-wide term replacement; add `--apply` to write changes.
+- `scripts/bump_version.py patch`: snapshots the current skill, then updates `VERSION`, `SKILL.md`, and this README.
+
 ## 简体中文
 
 `novel-architect` 是一个用于中长篇、长篇、连载小说和超长篇小说创作的 Codex skill。它的重点不是简单续写正文，而是用工程化方式维护小说设定、长期记忆、人物状态、伏笔、时间线、章节计划和写作风格，尽量避免长篇创作后期常见的人物混乱、剧情矛盾、伏笔遗忘和世界观不一致。
@@ -213,3 +220,10 @@ python C:\Users\chang\.codex\skills\.system\skill-creator\scripts\quick_validate
 ```
 
 当前版本已通过 `quick_validate.py`、脚本语法检查、初始化测试、异常 slug 测试、负数输入拒绝测试、dry-run 测试和独立评审复查。
+
+### 本地辅助脚本
+
+- `scripts/context_pack.py <project> --chapter N`：生成 `10_review/context_pack_chapter_####.md`。
+- `scripts/check_chapter.py <project> --chapter N`：生成 `10_review/gate_chapter_####.md` 并打印确定性问题。
+- `scripts/sync_term.py <project> --term OLD --replace-with NEW`：默认 dry-run 全项目术语替换；加 `--apply` 才会写入。
+- `scripts/bump_version.py patch`：先快照当前 skill，再同步更新 `VERSION`、`SKILL.md` 和 README。

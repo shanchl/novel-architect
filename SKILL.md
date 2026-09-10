@@ -3,7 +3,7 @@ name: novel-architect
 description: Manage long-form novel projects with isolated story bibles, structured memory, outlines, chapter plans, drafting, summaries, continuity checks, and change impact analysis. Use for novella, serial, long novel, or million-word fiction workflows, not for one-off short prose.
 metadata:
   short-description: Long-form novel engineering and memory
-  version: 1.0.3
+  version: 1.0.4
 ---
 
 # Novel Architect
@@ -14,7 +14,7 @@ This skill's core job is continuity and project control, not merely prose genera
 
 ## Skill Version
 
-Current version: `1.0.3`.
+Current version: `1.0.4`.
 
 When changing this skill's instruction files, references, scripts, or default project skeletons, increment the patch version before finishing the edit unless the user explicitly requests a different semantic-version bump. Keep `VERSION`, this frontmatter metadata, and `README.md` aligned.
 
@@ -31,8 +31,9 @@ When changing this skill's instruction files, references, scripts, or default pr
 ## Operating Rules
 
 - Load only the current novel's files. Do not import details from other novel directories unless the user explicitly asks for crossover or migration.
-- Do not load an entire novel manuscript as context. Build a focused context pack from the bible, relevant state files, current plan, and recent summaries.
+- Do not load an entire novel manuscript as context. Build a focused context pack from the bible, relevant state files, current plan, and recent summaries; in local projects prefer `scripts/context_pack.py <project> --chapter N`.
 - Before writing or revising a chapter, run the chapter gates: cross-chapter time handoff first, information chain second, domain/canon constraints third, prose/style checks last.
+- After checking a chapter in a local project, write or update `10_review/gate_chapter_####.md`; `scripts/check_chapter.py <project> --chapter N` does this by default.
 - After finishing a chapter, update summaries, character state, timeline, plotlines, foreshadowing, project status, and review files.
 - When changing established canon, run change impact analysis before editing dependent files.
 - Preserve prior versions of important canon files in `99_archive/` or record enough change history to explain what changed, why, and what was affected.

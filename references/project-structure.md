@@ -93,6 +93,9 @@ Use Markdown for human-readable canon and JSON/YAML for structured state. Prefer
 
 - `continuity_pre_chapter_####.md`: pre-draft checks.
 - `continuity_post_chapter_####.md`: post-draft checks.
+- `context_pack_chapter_####.md`: generated working context for a chapter task.
+- `gate_chapter_####.md`: generated deterministic and manual gate report for a chapter.
+- `canon_gates_project.md`: project-specific hard gates derived from this novel's world, procedures, terminology, species, technology, magic, institutions, or prose constraints.
 - `quality_chapter_####.md`: prose and chapter quality review.
 - `impact_analysis_YYYYMMDD_HHMMSS.md`: dependency analysis for canon changes.
 

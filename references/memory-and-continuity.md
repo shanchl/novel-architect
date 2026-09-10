@@ -49,6 +49,14 @@ For each chapter, assemble a compact context pack containing:
 
 Avoid older raw manuscript loading unless checking exact wording, revising a specific passage, or summarizing a chapter that lacks a summary. The previous two chapters are the standing exception and are always read in full for chapter drafting and revision.
 
+In local projects, prefer the deterministic helper:
+
+```bash
+python scripts/context_pack.py <project> --chapter N
+```
+
+It writes `10_review/context_pack_chapter_####.md` by default and includes all short summaries, the previous detailed summary, information ledger, scene clock, timeline, project-specific canon gates, writing files, relevant character states, and the previous two full manuscripts.
+
 ## Pre-Draft Continuity Check
 
 Before drafting, follow `chapter-gates.md` and check logic before prose:

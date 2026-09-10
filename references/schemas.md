@@ -40,15 +40,25 @@ facts:
 ## `08_memory/scene_clock.yaml`
 
 ```yaml
+time_baseline:
+  label: "story_day_0"
+  description: ""
 chapters:
   - chapter: 1
+    day_index_open: 0
+    night_index_open: 0
     opening_time: ""
     opening_location: ""
+    opening_anchor_event: ""
+    opening_relation_to_previous: "immediate"
+    day_index_close: 0
+    night_index_close: 0
     ending_time: ""
     ending_location: ""
     elapsed_time: ""
     unresolved_immediate_actions: []
     next_chapter_handoff: ""
+    relative_time_notes: []
 ```
 
 ## `10_review/continuity_pre_chapter_0001.md`
@@ -57,6 +67,8 @@ chapters:
 # Continuity Pre-Check · Chapter 0001
 
 ## Time Handoff
+
+## New-Information Inventory
 
 ## Character Locations
 
@@ -264,13 +276,20 @@ Allowed status values: `planted`, `advancing`, `resolved`, `abandoned`.
 ## `04_story/timeline.yaml`
 
 ```yaml
+time_baseline:
+  label: "story_day_0"
+  description: ""
 events:
   - id: "TL-001"
     chapter: 1
+    day_index: 0
+    night_index: 0
     story_date: ""
     event_time: ""
     order: 1
     event: ""
+    relative_to_previous: ""
+    anchor_event: ""
     characters: []
     character_ages: {}
     season: ""

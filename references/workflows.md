@@ -76,11 +76,11 @@ The user may use explicit commands or plain language. Treat natural-language req
 ## Chapter Drafting Workflow
 
 1. Determine the target chapter from the request, `status.yaml`, `chapter_toc.yaml`, and existing files.
-2. Build a context pack using [memory-and-continuity.md](memory-and-continuity.md).
+2. Build a context pack using [memory-and-continuity.md](memory-and-continuity.md). In a local project, prefer `scripts/context_pack.py <project> --chapter N` and use the generated `10_review/context_pack_chapter_####.md` as the working context.
 3. Create or update `10_review/continuity_pre_chapter_####.md` using [chapter-gates.md](chapter-gates.md). It must prove the opening time, location, character knowledge, possessions, and information channels.
 4. Generate a chapter writing plan with opening, scene list, central conflict, emotional progression, reveals, foreshadowing, climax, and ending hook.
 5. Draft the chapter from the chapter plan and the current project's `09_writing/` files.
-6. Run quality, continuity, domain, repetition, and style checks. Use `scripts/check_chapter.py` when working in a local project and the script covers the needed checks.
+6. Run quality, continuity, domain, repetition, and style checks. Use `scripts/check_chapter.py <project> --chapter N` when working in a local project; it writes `10_review/gate_chapter_####.md` and leaves manual continuity items explicit.
 7. Save the chapter manuscript in `06_chapters/chapter_####.md`.
 8. Generate `07_summaries/chapter_####_summary.md` and `07_summaries/chapter_####_short.md`.
 9. Update character states, timeline, plotlines, foreshadowing, open threads, and `10_review/continuity_post_chapter_####.md`.
@@ -126,3 +126,5 @@ When editing the skill itself, update the skill's semantic version before finish
 - Major bump for incompatible project layout changes or changes that require migrating existing novels.
 
 Keep `VERSION`, `SKILL.md` metadata, and `README.md` aligned.
+
+Use `scripts/bump_version.py patch|minor|major` unless a different update is required. The script snapshots the previous skill files under `.version_backups/` before changing version numbers.

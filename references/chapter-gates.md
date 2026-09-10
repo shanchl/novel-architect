@@ -29,6 +29,13 @@ It must state:
 
 If a chapter opens immediately after the previous chapter, treat the opening as "next second" continuity unless the text explicitly establishes a time jump.
 
+Mechanical check:
+
+- Read the previous chapter's `continuity_post_chapter_####.md`, `08_memory/scene_clock.yaml`, and the previous chapter manuscript ending before drafting.
+- Compare the previous ending against the new opening for time, location, character presence, unresolved actions, available objects, and known facts.
+- If the project uses relative time expressions, derive them from `day_index` and `night_index` fields in `scene_clock.yaml` or `04_story/timeline.yaml`; do not calculate from memory.
+- Record any uncertain handoff in the pre-check file before prose work begins.
+
 ### New-Information Inventory
 
 Every chapter must move the story forward. Before drafting, list the facts, turns, discoveries, decisions, pressures, or state changes this chapter introduces. Most chapters should have 2-5; a short transition may have fewer, and a major reveal chapter may have more.
@@ -60,6 +67,13 @@ For every new fact used by a character, identify:
 If the answer to "how did they know this?" is missing, the chapter is not ready.
 
 Information carriers have limits. A report cannot contain failed attempts no one recorded. A witness statement cannot reveal what the witness did not see. A sensory trace can imply direction or state only within the project's established rules.
+
+Mechanical check:
+
+- For every new fact in the chapter plan or draft, search `08_memory/information_ledger.yaml`, relevant character states, and recent summaries for its first known source.
+- If the fact is new, add or plan an information ledger entry with `known_by`, `source_channel`, `learned_at`, and `constraints`.
+- For reports, messages, testimony, sensory traces, and institutional records, write one sentence explaining what that carrier can and cannot contain.
+- Compare the channel against prior concealment, promises, secrecy, professional limits, and physical access.
 
 ## Logic Failure Policy
 
@@ -99,6 +113,13 @@ Must be fixed:
 
 When a chapter is short, expand with new information, new observation, new obstacle, new consequence, or sharper scene pressure. Do not restate known information in different words to reach a word target.
 
+Mechanical check:
+
+- Run `scripts/check_chapter.py <project> --chapter N` after drafting or revision. Treat n-gram output as a review queue, not an automatic failure.
+- For each repeated fragment in the generated gate report, classify it as `intentional_echo`, `term_or_name`, `motif`, `necessary_reminder`, or `needs_revision`.
+- A repeated fragment marked `necessary_reminder` must immediately support a new decision, conflict, inference, or emotional turn in the same scene.
+- If a repeated paragraph can be removed without changing available choices, conflict, or reader understanding, revise it.
+
 ## Cross-Chapter Callback Gate
 
 Avoid references that require the reader to remember an earlier line exactly. If a later scene depends on earlier information, make the current scene self-contained:
@@ -113,19 +134,23 @@ Use "as I said before" or equivalent recall framing only when the act of recalli
 
 Automated checks cannot catch these failures. Run this list manually before accepting a chapter:
 
-- **Unintroduced labels:** a term, codename, number, case label, tool, institution, or shorthand appears as if established. If it has no antecedent, introduce it in context or make it self-explanatory.
-- **Contradicted results:** an earlier chapter established a result, but the new chapter says it cannot be done or never happened. State why the earlier result was partial, insufficient, invalidated, or about a different question.
-- **Capability leaks:** a newly introduced ability, tool, loophole, or procedure would have erased an existing clue or solved an earlier problem. Add a limit, make the inconsistency a deduction, or change the capability.
-- **Motivation leaks:** a character gives away information they would protect, or withholds information they should share, without a stated reason.
-- **Physical-process gaps:** an observable trace is attributed to an administrative, legal, magical, or procedural act that cannot physically create it. Add the physical artifact or change the deduction.
-- **Early reveal confirmation:** atmosphere or a casual line accidentally proves a mystery scheduled for later payoff. Compare against foreshadowing plans before finalizing.
-- **Counting errors:** numbers in prose contradict the objects, days, people, words, clues, or steps they point at. Derive counts from timeline/state files, not memory.
-- **Unspoken inference shared as knowledge:** one character builds on another character's interior deduction even though it was never spoken or otherwise transmitted.
-- **Specialist handling errors:** a professional character handles evidence, magic, tools, records, bodies, samples, or artifacts in a way that violates the project's established rules without cost.
-- **Terminology drift:** the same object, body part, method, institution, spell, technology, or role receives a new name without reason.
-- **Evidence-type mismatch:** a conclusion is credited to a method that cannot support it under project rules. Match the conclusion to the correct evidence stream.
+- **Unintroduced labels:** a term, codename, number, case label, tool, institution, or shorthand appears as if established. Search `02_world/`, `03_characters/`, `04_story/`, `07_summaries/`, and `08_memory/`; if it has no antecedent, introduce it in context or make it self-explanatory.
+- **Contradicted results:** an earlier chapter established a result, but the new chapter says it cannot be done or never happened. Search recent summaries and the information ledger for the earlier result; state why it was partial, insufficient, invalidated, or about a different question.
+- **Capability leaks:** a newly introduced ability, tool, loophole, or procedure would have erased an existing clue or solved an earlier problem. Search earlier chapter summaries for places the capability would apply; add a limit, make the inconsistency a deduction, or change the capability.
+- **Motivation leaks:** a character gives away information they would protect, or withholds information they should share, without a stated reason. Check the character's current goal, fear, relationship pressure, and known risks in their state file.
+- **Physical-process gaps:** an observable trace is attributed to an administrative, legal, magical, or procedural act that cannot physically create it. Check the applicable world rule or domain note; add the physical artifact or change the deduction.
+- **Early reveal confirmation:** atmosphere or a casual line accidentally proves a mystery scheduled for later payoff. Compare the line against `04_story/foreshadowing.yaml`, plotlines, and planned reveals before finalizing.
+- **Counting errors:** numbers in prose contradict the objects, days, people, words, clues, or steps they point at. Derive counts from timeline, scene clock, lists, or state files; do not trust memory.
+- **Relative-time drift:** expressions such as yesterday, last night, two days ago, later that morning, and the next evening disagree across chapters. Convert both passages to `day_index` and `night_index` before rewriting prose.
+- **Unspoken inference shared as knowledge:** one character builds on another character's interior deduction even though it was never spoken or otherwise transmitted. Check dialogue/action transmission before allowing the shared knowledge.
+- **Specialist handling errors:** a professional character handles evidence, magic, tools, records, bodies, samples, or artifacts in a way that violates the project's established rules without cost. Compare the action to project rules and make the breach visible if intentional.
+- **Terminology drift:** the same object, body part, method, institution, spell, technology, or role receives a new name without reason. Search all project memory and summaries; update terms or record an intentional alias.
+- **Evidence-type mismatch:** a conclusion is credited to a method that cannot support it under project rules. Match the conclusion to the correct evidence stream and record the channel in the information ledger.
 - **List inconsistency:** a character enumerates a set of clues, staged items, suspects, causes, costs, or steps, then another passage repeats the set with a different item count or a mismatched member. Check that every listed item belongs to the claimed category.
+- **Identity-marker collision:** a nickname, species trait, title, body mark, costume, or role is used to identify one character but also applies to another. Compare character profiles and aliases; use an individual difference or explain why the context singles out one person.
 - **False contradiction:** two accounts of the same fact may differ because of speaker role, self-interest, audience, or deliberate concealment. Treat as a contradiction only after checking whether both can coexist in character.
+
+For project-specific hard gates, create or update `10_review/canon_gates_project.md` inside the novel project. Keep the skill generic; store genre, world, profession, species, magic, technology, and prose-voice specifics in the project.
 
 ## Post-Chapter Gate
 
@@ -158,3 +183,19 @@ After such edits, search the project for the old wording or stale fact and updat
 Short summaries are high-risk because later chapters often load them instead of old manuscripts.
 
 Only update `00_project/status.yaml` after the manuscript, summary, timeline, involved character states, and post-chapter gate have been checked.
+
+## Gate Report
+
+After drafting, revising, or running a chapter check, write the current deterministic and manual review state to `10_review/gate_chapter_####.md`.
+
+The report should include:
+
+- Deterministic script results.
+- Time handoff status.
+- Information-chain risks.
+- Canon-consistency checklist results.
+- Repetition triage and decisions.
+- Summary/state/timeline sync status.
+- Remaining blocking risks.
+
+The report is the durable review artifact. A terminal exit code alone is not enough for long-form work.
