@@ -6,9 +6,11 @@ Long novels require deliberate context loading. The goal is to carry stable cano
 
 Permanent memory, loaded for every planning, drafting, and continuity task:
 
+- `01_concept/creative_contract.md`
 - `01_concept/core.md`
 - `01_concept/synopsis.md` when concise enough, otherwise relevant sections only
 - `04_story/master_outline.md`
+- `04_story/story_engine.yaml`
 - `08_memory/novel_bible.md` when it exists and is current
 - `08_memory/permanent.md`
 - protagonist profile and state
@@ -22,6 +24,8 @@ Structured long-term memory, loaded as needed:
 - relevant world bible sections and terms
 - timeline entries near the current chapter
 - active plotlines
+- active or due reader promises
+- relevant character arcs
 - foreshadowing entries due soon or touched by the chapter
 - state snapshots near the current chapter
 
@@ -33,21 +37,24 @@ Short-term memory, prioritized for drafting:
 - current unresolved threads
 - current character states for involved characters
 - current information ledger and scene clock when they exist
+- current POV and character-voice constraints
 
 ## Context Pack
 
 For each chapter, assemble a compact context pack containing:
 
-- story identity: title, genre, target reader, current volume, current chapter
+- story identity: title, genre, target reader, current volume, current chapter, and authorship boundaries
 - non-negotiable canon: premise, theme, core conflict, world hard rules
 - active cast: role, current location, goal, knowledge, emotional state, relationship state
 - recent events: previous 3-5 chapter short summaries, plus detailed summaries when needed
 - immediate handoff: the full manuscripts of the previous two chapters when drafting or revising a new chapter; always load both in full so opening time/location, voice, and unresolved scene momentum are protected
 - chapter mandate: chapter goal, events, conflict, reveal, foreshadowing, hook, target word count
-- continuity watchlist: due plotlines, due foreshadowing, timeline constraints, forbidden outcomes
+- continuity watchlist: due plotlines, reader promises, due foreshadowing, character-arc pressure, timeline constraints, forbidden outcomes
 - style pack: relevant writing rules, banned phrases, character voice notes
 
-Avoid older raw manuscript loading unless checking exact wording, revising a specific passage, or summarizing a chapter that lacks a summary. The previous two chapters are the standing exception and are always read in full for chapter drafting and revision.
+Avoid older raw manuscript loading unless checking exact wording, revising a specific passage, or summarizing a chapter that lacks a summary. The previous two chapters are the standing exception for ordinary drafting and revision. Reduce that number only when an explicit context budget requires it and record the omission.
+
+Use a character budget and report every missing, truncated, or omitted source. Never load all historical summaries or all character states merely because they exist. Select recent summaries and retrieve older material through character names, plotline IDs, promise IDs, foreshadowing IDs, timeline windows, or terms present in the chapter plan.
 
 In local projects, prefer the deterministic helper:
 
@@ -55,7 +62,7 @@ In local projects, prefer the deterministic helper:
 python scripts/context_pack.py <project> --chapter N
 ```
 
-It writes `10_review/context_pack_chapter_####.md` by default and includes all short summaries, the previous detailed summary, information ledger, scene clock, timeline, project-specific canon gates, writing files, relevant character states, and the previous two full manuscripts.
+It writes `10_review/context_pack_chapter_####.md` by default. It includes the creative contract, story engine, novel bible, current outline context, previous manuscripts, recent summaries, selected state, active narrative threads, continuity records, and writing controls within a declared budget. Use `--characters`, `--recent-summaries`, and `--max-chars` when the automatic selection needs adjustment; `--all-character-states` is an explicit exceptional mode.
 
 ## Pre-Draft Continuity Check
 
@@ -88,6 +95,8 @@ After a chapter is saved, update:
 - Information ledger: who learned what, when, by what channel, and what remains unknown.
 - Scene clock: chapter end time/location and any delayed consequences.
 - Project status: last written chapter, total words when known, next recommended step.
+- Pacing ledger: pressure, information gain, emotional movement, payoff activity, irreversible change, and scene mode.
+- Freshness registry: update through the applied chapter delta rather than by hand.
 
 ## Continuity Report Shape
 

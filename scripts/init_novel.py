@@ -10,6 +10,8 @@ import re
 import sys
 from pathlib import Path
 
+from project_templates import NEW_PROJECT_FILES, PROJECT_SCHEMA_VERSION, project_schema
+
 try:
     from pypinyin import lazy_pinyin
 except ImportError:  # pragma: no cover - optional dependency
@@ -29,6 +31,7 @@ FOLDERS = [
     "06_chapters/drafts",
     "07_summaries",
     "08_memory/state_snapshots",
+    "08_memory/deltas",
     "09_writing",
     "10_review",
     "99_archive",
@@ -289,7 +292,8 @@ def main() -> int:
     write_if_missing(project / "00_project" / "requirements.md", requirements)
 
     chapter_count = args.target_chapter_count if args.target_chapter_count is not None else "null"
-    status = f"""title: {yaml_quote(args.title)}
+    status = f"""project_schema_version: {yaml_quote(PROJECT_SCHEMA_VERSION)}
+title: {yaml_quote(args.title)}
 slug: {yaml_quote(slug)}
 genre: {yaml_quote(args.genre)}
 target_total_words: {args.target_total_words}
@@ -307,6 +311,7 @@ updated_at: {yaml_quote(now)}
     write_if_missing(project / "00_project" / "status.yaml", status)
 
     placeholders = {
+        "00_project/project_schema.json": project_schema(args.title, slug),
         "00_project/change_log.md": "# Change Log\n",
         "01_concept/core.md": "# Core Concept\n",
         "01_concept/synopsis.md": "# Synopsis\n",
@@ -329,10 +334,11 @@ updated_at: {yaml_quote(now)}
         "08_memory/scene_clock.yaml": "time_baseline:\n  label: \"story_day_0\"\n  description: \"\"\nchapters: []\n",
         "09_writing/style.md": "# Style\n",
         "09_writing/writing_rules.md": "# Writing Rules\n",
-        "09_writing/forbidden_patterns.md": "# Forbidden Patterns\n\n- 微微一愣\n- 不禁\n- 嘴角勾起\n- 眼中闪过\n- 空气仿佛凝固\n- 倒吸一口凉气\n- 这一刻终于明白\n- 命运的齿轮\n",
+        "09_writing/forbidden_patterns.md": "# Forbidden Patterns\n\nRecord only project-specific bans. Treat generic AI-like phrases as review candidates unless the creative contract makes them hard bans.\n",
         "09_writing/vocabulary.md": "# Vocabulary\n",
         "09_writing/prompts.md": "# Novel-Specific Prompts\n",
     }
+    placeholders.update(NEW_PROJECT_FILES)
     for rel_path, content in placeholders.items():
         write_if_missing(project / rel_path, content)
 

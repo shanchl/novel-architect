@@ -1,6 +1,6 @@
 # Writing Control
 
-This skill should help sustain a coherent long-form voice across many chapters. Each novel's style rules live only in that novel's `09_writing/` folder. De-AI writing control means enforcing the current project's style and eliminating generic, repetitive, over-explanatory, or template-like prose that violates those files.
+This skill should help sustain a coherent long-form voice across many chapters. Each novel's style rules live only in that novel's `09_writing/` folder and remain subordinate to its creative contract. De-AI writing control means enforcing the current project's style and eliminating generic, repetitive, over-explanatory, or template-like prose that violates those files; it is not a universal blacklist.
 
 ## Style Files
 
@@ -43,6 +43,13 @@ This skill should help sustain a coherent long-form voice across many chapters. 
 
 - novel-specific authoring instructions and constraints
 
+`pov_voices.yaml`
+
+- viewpoint knowledge boundaries and attention bias
+- diction and metaphor sources
+- narrative distance
+- character-specific omissions, evasions, and exceptions
+
 ## Anti-AI Pattern Checks
 
 Load the project's `style.md`, `writing_rules.md`, `forbidden_patterns.md`, `vocabulary.md`, and `prompts.md` before final prose review. Scan drafts for banned or overused expressions, including project-specific entries and common patterns such as:
@@ -81,6 +88,9 @@ Review a chapter for:
 
 - whether the chapter goal was fulfilled
 - whether every scene changes conflict, information, relationship, or state
+- whether scene outcomes cause or constrain later action
+- whether important choices carry a cost and preserve character agency
+- whether reader promises are prepared, advanced, paid off, or intentionally delayed
 - protagonist agency and motivation
 - tension shape and pacing
 - clarity of reveals

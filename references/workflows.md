@@ -11,10 +11,11 @@ The user may use explicit commands or plain language. Treat natural-language req
 - Save normalized requirements in `00_project/requirements.md`.
 - Save the raw request and inferred assumptions in `00_project/brief.md`.
 - Initialize `00_project/status.yaml`.
+- Establish `01_concept/creative_contract.md`, especially reader promise, authorship boundaries, locked decisions, and deliberate genre departures.
 
 `/novel plan`
 
-- Generate or refine `01_concept/core.md`, `01_concept/synopsis.md`, `02_world/world_bible.md`, major character profiles and current states, relationships, master outline, first plotlines, foreshadowing seeds, and initial timeline.
+- Generate or refine the creative contract, core, synopsis, story engine, world bible, major character profiles and arcs, relationships, master outline, first plotlines, reader promises, foreshadowing seeds, and initial timeline.
 - Ask questions only for decisions that would materially change the genre promise or user intent.
 
 `/novel bible`
@@ -41,6 +42,15 @@ The user may use explicit commands or plain language. Treat natural-language req
 
 - Write the next or requested chapter by following the chapter drafting workflow below. The chapter-start gates are blocking: time handoff and information chain must be coherent before prose drafting continues.
 
+`/novel accept`
+
+- Create and validate the chapter delta, apply it after review, then run `scripts/check_chapter.py <project> --chapter N --stage accept`.
+- Acceptance advances project status only after required views are fresh and blocking risks are empty.
+
+`/novel migrate`
+
+- Preview `scripts/migrate_project.py <project>`, report its additive changes, and use `--apply` only when the user asked to migrate or update that project.
+
 `/novel continue`
 
 - Determine the current chapter from `00_project/status.yaml`, recent summaries, and existing chapter files, then continue with `/novel write`.
@@ -53,12 +63,12 @@ The user may use explicit commands or plain language. Treat natural-language req
 
 - Run continuity checks across selected files. For ultra-long projects, start from structured memory and report coverage explicitly: status, novel bible, permanent memory, chapter table of contents, all active character states, all relationship entries, full timeline, all active plotlines, all unresolved foreshadowing, all state snapshots, and recent 3-5 chapter summaries.
 - For broad checks, include boundary chapters around every state snapshot, chapters where relationships changed, chapters where foreshadowing was planted or paid off, timeline gaps, and any chapters named by the user. Read full manuscripts only for implicated chapters, missing summaries, exact wording disputes, or high-severity contradictions.
-- Apply the gate order from `chapter-gates.md`: cross-chapter time, information chain, domain/canon constraints, then prose/style. Report logic defects before wording defects.
+- Apply the gate order from `chapter-gates.md`: cross-chapter time, information chain, domain/canon constraints, narrative movement, then prose/style. Report logic and causal defects before wording defects.
 - Each check report should state which files were inspected, which chapters were represented only by summaries or snapshots, what was not checked, and the residual risk.
 
 `/novel review`
 
-- Review chapter quality: scene purpose, pacing, voice, character motivation, tension, reveal control, style compliance, banned patterns, repeated phrasing, and ending hook. Use the current project's style files as the source of de-AI writing control.
+- Review chapter quality: scene causality, character agency and cost, value shifts, reader-promise movement, pacing, voice, motivation, tension, reveal control, style compliance, repeated phrasing, and ending hook. Use the creative contract and current project style as authority.
 
 `/novel revise`
 
@@ -76,17 +86,18 @@ The user may use explicit commands or plain language. Treat natural-language req
 ## Chapter Drafting Workflow
 
 1. Determine the target chapter from the request, `status.yaml`, `chapter_toc.yaml`, and existing files.
-2. Build a context pack using [memory-and-continuity.md](memory-and-continuity.md). In a local project, prefer `scripts/context_pack.py <project> --chapter N` and use the generated `10_review/context_pack_chapter_####.md` as the working context.
-3. Create or update `10_review/continuity_pre_chapter_####.md` using [chapter-gates.md](chapter-gates.md). It must prove the opening time, location, character knowledge, possessions, and information channels.
-4. Generate a chapter writing plan with opening, scene list, central conflict, emotional progression, reveals, foreshadowing, climax, and ending hook.
+2. Build a relevance-bounded context pack using [memory-and-continuity.md](memory-and-continuity.md). In a local project, prefer `scripts/context_pack.py <project> --chapter N` and review its context audit for omissions or truncation.
+3. Create or update `10_review/continuity_pre_chapter_####.md` using [chapter-gates.md](chapter-gates.md), then run the `pre` stage. It must prove the opening time, location, character knowledge, possessions, and information channels.
+4. Generate a chapter writing plan using [narrative-engine.md](narrative-engine.md). Substantial scenes should identify objective, opposition, turn, choice, cost, value shift, causal handoff, and reader-question movement when those controls fit the project.
 5. Draft the chapter from the chapter plan and the current project's `09_writing/` files.
-6. Run quality, continuity, domain, repetition, and style checks. Use `scripts/check_chapter.py <project> --chapter N` when working in a local project; it writes `10_review/gate_chapter_####.md` and leaves manual continuity items explicit.
+6. Run quality, continuity, domain, repetition, and style checks. Use `scripts/check_chapter.py <project> --chapter N --stage draft`; it scans verbatim reuse against all existing chapters, writes `10_review/gate_chapter_####.md`, and leaves semantic novelty and continuity items explicit. Follow [repetition-control.md](repetition-control.md) rather than fixing repeated content through cosmetic synonym swaps.
 7. Save the chapter manuscript in `06_chapters/chapter_####.md`.
 8. Generate `07_summaries/chapter_####_summary.md` and `07_summaries/chapter_####_short.md`.
-9. Update character states, timeline, plotlines, foreshadowing, open threads, and `10_review/continuity_post_chapter_####.md`.
-10. Re-read or grep changed YAML/Markdown files to confirm the intended key fields actually landed.
-11. Update `00_project/status.yaml` only after the manuscript, summaries, state updates, timeline, and post-chapter gate are coherent.
-12. Every 10 chapters, write a state snapshot in `08_memory/state_snapshots/`.
+9. Prepare updated character states, timeline, plotlines, promises, foreshadowing, open threads, pacing ledger, and `10_review/continuity_post_chapter_####.md`; run the `post` gate.
+10. Create `08_memory/deltas/chapter_####.json` as described in [state-transactions.md](state-transactions.md). Put complete derived-file replacements in `file_updates` and explicitly list rechecked unchanged required views in `confirmed_current`.
+11. Dry-run `scripts/apply_chapter_delta.py <project> --chapter N`, inspect the target list, then apply it. The transaction archives replacements, records freshness, and advances status last.
+12. Complete the manual checklist in `gate_chapter_####.md`, then run `scripts/check_chapter.py <project> --chapter N --stage accept`. Do not accept a chapter with unchecked review items, blocking results, or stale required views.
+13. Write a state snapshot when either the project-defined interval is reached or a structural milestone occurs, such as a volume boundary, major reveal, irreversible identity or relationship change, or sustained location/time-period shift.
 
 ## Change Impact Analysis
 

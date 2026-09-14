@@ -1,20 +1,20 @@
 ---
 name: novel-architect
-description: Manage long-form novel projects with isolated story bibles, structured memory, outlines, chapter plans, drafting, summaries, continuity checks, and change impact analysis. Use for novella, serial, long novel, or million-word fiction workflows, not for one-off short prose.
+description: Plan, draft, revise, and maintain long-form fiction with isolated story bibles, narrative engines, reader promises, structured memory, continuity gates, and transactional chapter state. Use for novella, serial, long novel, or million-word fiction workflows, not for one-off short prose.
 metadata:
   short-description: Long-form novel engineering and memory
-  version: 1.0.4
+  version: 1.2.5
 ---
 
 # Novel Architect
 
 Use this skill when the user wants to create, plan, continue, revise, audit, or maintain a medium, long, or ultra-long novel. Treat each novel as an isolated project with its own files, memory, style rules, and state. Never mix settings, characters, summaries, or prompts between novels.
 
-This skill's core job is continuity and project control, not merely prose generation. Maintain a novel bible, structured long-term memory, chapter plans, summaries, character state, plotlines, foreshadowing, timeline, writing rules, review results, and change logs.
+Balance creative architecture with continuity control. Preserve the reader promise, causal pressure, character agency and cost, payoff preparation, voice, canon, and recoverable project state; correctness alone does not make a compelling novel.
 
 ## Skill Version
 
-Current version: `1.0.4`.
+Current version: `1.2.5`.
 
 When changing this skill's instruction files, references, scripts, or default project skeletons, increment the patch version before finishing the edit unless the user explicitly requests a different semantic-version bump. Keep `VERSION`, this frontmatter metadata, and `README.md` aligned.
 
@@ -32,9 +32,12 @@ When changing this skill's instruction files, references, scripts, or default pr
 
 - Load only the current novel's files. Do not import details from other novel directories unless the user explicitly asks for crossover or migration.
 - Do not load an entire novel manuscript as context. Build a focused context pack from the bible, relevant state files, current plan, and recent summaries; in local projects prefer `scripts/context_pack.py <project> --chapter N`.
-- Before writing or revising a chapter, run the chapter gates: cross-chapter time handoff first, information chain second, domain/canon constraints third, prose/style checks last.
-- After checking a chapter in a local project, write or update `10_review/gate_chapter_####.md`; `scripts/check_chapter.py <project> --chapter N` does this by default.
-- After finishing a chapter, update summaries, character state, timeline, plotlines, foreshadowing, project status, and review files.
+- Before writing or revising a chapter, run gates in dependency order: time handoff, information chain, domain/canon, narrative movement, then prose/style.
+- Use the creative contract as the authority for reader experience and authorship boundaries. Use the story engine, character arcs, and reader promises to make chapter plans causal rather than merely eventful.
+- Run `scripts/check_chapter.py <project> --chapter N --stage pre|draft|post|accept` at the matching lifecycle stage; do not treat review-level style signals as canon failures.
+- For long-form repetition control, scan the current chapter against all existing chapters and audit paraphrased information and repeated scene functions. Do not mistake a clean string scan for a clean reading experience.
+- After finishing a chapter, record state changes once in `08_memory/deltas/chapter_####.json`, validate the dry-run, and apply the transaction before acceptance. The transaction archives replaced files, records freshness, and advances status last.
+- Resolve conflicts by the authority order in `references/state-transactions.md`. Plans and generated context packs never override accepted prose or locked user decisions.
 - When changing established canon, run change impact analysis before editing dependent files.
 - Preserve prior versions of important canon files in `99_archive/` or record enough change history to explain what changed, why, and what was affected.
 - Treat de-AI writing control as project-specific style enforcement. Load and obey the current novel's `09_writing/style.md`, `writing_rules.md`, `forbidden_patterns.md`, `vocabulary.md`, and `prompts.md`; do not substitute a generic prose style.
@@ -48,6 +51,9 @@ Read only the references needed for the current task:
 - For `/novel` commands and end-to-end procedures, read [references/workflows.md](references/workflows.md).
 - For chapter-start gates, information chains, and write/revise blocking checks, read [references/chapter-gates.md](references/chapter-gates.md).
 - For context packs, memory layers, continuity checks, and post-chapter updates, read [references/memory-and-continuity.md](references/memory-and-continuity.md).
+- For reader promises, story pressure, character agency and arcs, scene causality, pacing, and POV, read [references/narrative-engine.md](references/narrative-engine.md).
+- For canon authority, chapter deltas, freshness, acceptance, and project migration, read [references/state-transactions.md](references/state-transactions.md).
 - For project-specific domain constraints such as technical systems, procedural evidence, terminology, measurements, or nonhuman embodiment, read [references/domain-checks.md](references/domain-checks.md).
 - For prose style, anti-AI-pattern controls, chapter quality review, and revision rules, read [references/writing-control.md](references/writing-control.md).
+- For verbatim reuse, paraphrased information repetition, repeated scene functions, and occurrence-scoped approvals, read [references/repetition-control.md](references/repetition-control.md).
 - For recommended JSON/YAML shapes and Markdown templates, read [references/schemas.md](references/schemas.md).

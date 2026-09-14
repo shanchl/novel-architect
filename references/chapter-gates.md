@@ -7,7 +7,8 @@ The check order is mandatory because logic failures invalidate prose fixes:
 1. Cross-chapter time handoff.
 2. Information chain.
 3. Domain and canon constraints.
-4. Repetition, diction, and project-specific style.
+4. Narrative causality, agency, promises, and cost.
+5. Repetition, diction, and project-specific style.
 
 Do not skip the first two gates because the current chapter reads well in isolation.
 
@@ -89,9 +90,7 @@ Fix blocking defects before polishing prose.
 
 ## Repetition Gate
 
-Repetition means a whole piece of information, deduction, scene function, or emotional beat is being delivered again. It is not merely a recurring word, tool, image, dialogue tag, or character motif.
-
-Automated n-gram or repeated-sentence checks are triage, not verdicts. Treat them as prompts to inspect whether the repeated text repeats information without new function.
+Read [repetition-control.md](repetition-control.md) when drafting, revising, auditing, or accepting a chapter. Repetition control has three layers: verbatim reuse, paraphrased information reuse, and repeated scene or emotional function. A mechanical pass covers only the first layer.
 
 Usually acceptable:
 
@@ -115,10 +114,19 @@ When a chapter is short, expand with new information, new observation, new obsta
 
 Mechanical check:
 
-- Run `scripts/check_chapter.py <project> --chapter N` after drafting or revision. Treat n-gram output as a review queue, not an automatic failure.
-- For each repeated fragment in the generated gate report, classify it as `intentional_echo`, `term_or_name`, `motif`, `necessary_reminder`, or `needs_revision`.
+- Run `scripts/scan_repetition.py <project> --chapter N --against all` or let `scripts/check_chapter.py` invoke it after drafting or revision. Treat the full-context output as a review queue, not an automatic failure.
+- For each `REP-*` item in the generated gate report, record one checked classification and a concrete reason using the syntax in [repetition-control.md](repetition-control.md).
 - A repeated fragment marked `necessary_reminder` must immediately support a new decision, conflict, inference, or emotional turn in the same scene.
 - If a repeated paragraph can be removed without changing available choices, conflict, or reader understanding, revise it.
+- Do not use a Markdown bullet list of short phrases as a global substring whitelist. Durable approvals belong in `09_writing/repetition_registry.json` and must identify concrete text and concrete chapters.
+
+## Narrative Movement Gate
+
+Use the project's creative contract and story engine. For each substantial scene, verify that pressure meets a character objective and produces new information, a choice, a cost, a value shift, or a necessary setup with an identified later use. Check that the outcome causes or constrains later action instead of merely preceding it.
+
+Blocking narrative defects include a chapter whose decisive outcome depends on an unprepared coincidence, a viewpoint character using knowledge outside their boundary, or a resolution that violates a locked reader promise. Passive observation, deliberate anticlimax, and quiet aftermath are not automatically defects; judge them by their function and the intended reader experience.
+
+Review, but do not automatically block, low agency, repeated scene modes, payoff drought, identical hooks, cost-free victories, and character-arc stagnation. Record intentional exceptions.
 
 ## Cross-Chapter Callback Gate
 
@@ -184,6 +192,8 @@ Short summaries are high-risk because later chapters often load them instead of 
 
 Only update `00_project/status.yaml` after the manuscript, summary, timeline, involved character states, and post-chapter gate have been checked.
 
+In schema 1.3 projects, advance status through an applied chapter delta. The `accept` stage also verifies that required derived views are recorded as fresh through the accepted chapter.
+
 ## Gate Report
 
 After drafting, revising, or running a chapter check, write the current deterministic and manual review state to `10_review/gate_chapter_####.md`.
@@ -199,3 +209,5 @@ The report should include:
 - Remaining blocking risks.
 
 The report is the durable review artifact. A terminal exit code alone is not enough for long-form work.
+
+Complete the manual checklist after the `post` run. The `accept` stage blocks while any review checkbox remains unchecked or the narrative-movement section is missing. Re-running the `accept` stage refreshes deterministic results while preserving the completed manual portion.

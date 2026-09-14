@@ -25,6 +25,7 @@ Use Markdown for human-readable canon and JSON/YAML for structured state. Prefer
 
 `00_project/`
 
+- `project_schema.json`: project schema version and canon coverage for migration and freshness checks.
 - `requirements.md`: normalized novel requirements extracted from the user's natural-language brief.
 - `brief.md`: raw user request, extracted assumptions, target audience, length, chapter size, tone, freedom level.
 - `status.yaml`: current chapter, volume, word counts, last completed operations, open risks.
@@ -34,6 +35,7 @@ Use Markdown for human-readable canon and JSON/YAML for structured state. Prefer
 
 - `core.md`: one-sentence story, premise, themes, core conflict, selling points, story goal.
 - `synopsis.md`: expandable whole-book synopsis.
+- `creative_contract.md`: intended reader experience, genre promise, emotional destination, AI freedom, locked decisions, and avoid list.
 
 `02_world/`
 
@@ -51,6 +53,10 @@ Use Markdown for human-readable canon and JSON/YAML for structured state. Prefer
 `04_story/`
 
 - `master_outline.md`: whole-book outline.
+- `story_engine.yaml`: dramatic question, recurring source of pressure, protagonist drivers, escalation ladder, irreversible choices, and climax prerequisites.
+- `reader_promises.yaml`: expectations created for the reader and their preparation, target windows, payoff modes, and aftermath.
+- `character_arcs.yaml`: wants, needs, misbeliefs, tests, choices, costs, and turning points for major arcs.
+- `pacing_ledger.yaml`: per-chapter pressure, information, emotion, relationship movement, payoff, and scene-mode diagnostics.
 - `plotlines.yaml`: main line, growth lines, romance, mystery, factions, side plots.
 - `foreshadowing.yaml`: planted, advancing, resolved, or abandoned setups.
 - `timeline.yaml`: event order, dates, ages, season, travel time.
@@ -76,10 +82,13 @@ Use Markdown for human-readable canon and JSON/YAML for structured state. Prefer
 
 - `novel_bible.md`: consolidated canon entrypoint for the current novel only.
 - `permanent.md`: always-load facts: core concept, themes, hard rules, protagonist essentials, master outline.
-- `state_snapshots/snapshot_chapter_####.md`: every 10 chapters or major turning point.
+- `state_snapshots/snapshot_chapter_####.md`: at the project-defined interval or a major structural turning point.
 - `open_threads.md`: unresolved questions, promises, conflicts, and pending reveals.
 - `information_ledger.yaml`: who knows each important fact, when they learned it, and through which channel.
 - `scene_clock.yaml`: opening and ending time/location for chapters, used for next-chapter handoff checks.
+- `deltas/chapter_####.json`: one transaction manifest for the state changes and derived-file updates caused by a chapter.
+- `state_events.jsonl`: append-only record of applied chapter deltas without embedded replacement contents.
+- `freshness.json`: derived-file hashes, source deltas, and the latest canon chapter each file covers.
 
 `09_writing/`
 
@@ -88,6 +97,8 @@ Use Markdown for human-readable canon and JSON/YAML for structured state. Prefer
 - `forbidden_patterns.md`: banned phrases and AI-like patterns.
 - `vocabulary.md`: preferred terms, diction, character voice notes.
 - `prompts.md`: novel-specific prompt guidance.
+- `pov_voices.yaml`: viewpoint knowledge boundaries, attention bias, diction, metaphor sources, and narrative distance.
+- `repetition_registry.json`: occurrence-scoped approvals for intentional verbatim echoes; never a global short-substring whitelist.
 
 `10_review/`
 

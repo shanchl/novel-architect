@@ -7,6 +7,8 @@ Default mode is dry-run. Use --replace-with plus --apply for mutation.
 from __future__ import annotations
 
 import argparse
+import datetime as dt
+import shutil
 import sys
 from pathlib import Path
 
@@ -58,9 +60,14 @@ def main() -> int:
     parser.add_argument("--term", required=True)
     parser.add_argument("--replace-with")
     parser.add_argument("--apply", action="store_true", help="Actually write replacements")
+    parser.add_argument("--confirm-count", type=int, help="Required exact hit count when applying")
     args = parser.parse_args()
 
     project = args.project.resolve()
+    if not (project / "00_project" / "status.yaml").exists():
+        raise SystemExit(f"Not a novel-architect project: {project}")
+    if not args.term:
+        raise SystemExit("--term cannot be empty")
     total_hits = 0
     hit_files: list[Path] = []
     for path in iter_files(project):
@@ -84,10 +91,22 @@ def main() -> int:
         print("DRY_RUN replacement not applied. Re-run with --apply to write changes.")
         return 0
 
+    if args.confirm_count != total_hits:
+        raise SystemExit(f"Refusing apply: --confirm-count must equal current hit count {total_hits}")
+    if args.term == args.replace_with:
+        raise SystemExit("Refusing apply: old and new terms are identical")
+
     replaced = 0
+    stamp = dt.datetime.now().strftime("%Y%m%d_%H%M%S_%f")
+    archive = project / "99_archive" / stamp / "term_sync"
     for path in hit_files:
+        relative = path.relative_to(project)
+        backup = archive / relative
+        backup.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(path, backup)
         replaced += replace_term(path, args.term, args.replace_with)
     print(f"REPLACED {replaced}")
+    print(f"ARCHIVE {archive}")
     return 0
 
 

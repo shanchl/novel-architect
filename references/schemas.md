@@ -2,10 +2,23 @@
 
 These shapes are recommendations, not a rigid database. Preserve useful existing project formats when updating an established novel.
 
+## `00_project/project_schema.json`
+
+```json
+{
+  "schema_version": "1.3.0",
+  "title": "",
+  "slug": "",
+  "canon_through_chapter": 0,
+  "created_by": "novel-architect"
+}
+```
+
 ## `00_project/status.yaml`
 
 ```yaml
 title: ""
+project_schema_version: "1.3.0"
 slug: ""
 genre: ""
 target_total_words: 0
@@ -105,6 +118,25 @@ chapters:
 ## Residual Risks
 ```
 
+## `09_writing/repetition_registry.json`
+
+```json
+{
+  "schema_version": 1,
+  "entries": [
+    {
+      "id": "echo-example",
+      "text": "",
+      "category": "intentional_echo",
+      "chapters": [1, 8],
+      "reason": ""
+    }
+  ]
+}
+```
+
+Valid categories are `intentional_echo`, `term_or_name`, `motif`, and `necessary_reminder`. Register exact text and explicit chapter occurrences. Do not add `needs_revision` entries or short global suppression fragments.
+
 ## `00_project/change_log.md`
 
 ```markdown
@@ -161,8 +193,18 @@ scenes:
     pov: ""
     characters: []
     purpose: ""
+    scene_question: ""
+    character_objective: ""
+    opposition: ""
     conflict: ""
     emotional_shift: ""
+    choice: ""
+    cost: ""
+    value_before: ""
+    value_after: ""
+    causes_next_scene: ""
+    reader_question_opened: ""
+    reader_question_answered: ""
     reveal: ""
     foreshadowing: []
 main_events: []
@@ -174,6 +216,71 @@ plotline_progress: []
 climax: ""
 ending_hook: ""
 continuity_constraints: []
+```
+
+## `04_story/reader_promises.yaml`
+
+```yaml
+promises:
+  - id: "RP-001"
+    type: "mystery"
+    promise: ""
+    importance: "major"
+    reader_knows: []
+    expected_experience: ""
+    preparation_ids: []
+    legitimate_misdirection: []
+    payoff_prerequisites: []
+    target_window: []
+    status: "open"
+    payoff_mode: ""
+    actual_payoff_chapter: null
+    aftermath_required: []
+    overdue_risk: ""
+```
+
+## `04_story/character_arcs.yaml`
+
+```yaml
+arcs:
+  - id: "ARC-001"
+    character: ""
+    starting_stance: ""
+    want: ""
+    need: ""
+    misbelief: ""
+    pressure_points: []
+    planned_tests: []
+    choices: []
+    costs: []
+    turning_points: []
+    current_stage: ""
+    end_state_range: ""
+```
+
+## `08_memory/deltas/chapter_0001.json`
+
+```json
+{
+  "schema_version": 1,
+  "chapter": 1,
+  "canon_through_chapter": 1,
+  "summary": "",
+  "events": [],
+  "state_changes": [],
+  "knowledge_changes": [],
+  "object_changes": [],
+  "relationship_changes": [],
+  "timeline_changes": [],
+  "plotline_changes": [],
+  "promise_changes": [],
+  "file_updates": [
+    {"path": "03_characters/states/example.yaml", "content": "...complete new file content..."}
+  ],
+  "confirmed_current": [],
+  "blocking_risks": [],
+  "updated_at": ""
+}
 ```
 
 ## `07_summaries/chapter_0001_summary.md`

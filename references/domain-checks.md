@@ -70,10 +70,12 @@ First appearances should separate group-readable traits from individual identifi
 
 Run prose checks after logic checks:
 
-- Exact repeated sentences.
-- Repeated 6+ character or word n-grams across nearby chapters.
+- Exact repeated sentences and restored maximal passages across all existing chapters.
+- Paraphrased repetition of established information, deductions, recaps, or explanations.
 - Repeated scene beats, reaction beats, gestures, explanations, and hooks.
 - Images or metaphors that conflict with project material culture.
 - Project-specific forbidden diction.
 
 Intentional echoes are allowed only when they are marked as deliberate in review notes or the chapter plan.
+
+Use [repetition-control.md](repetition-control.md) for scanning, semantic review, classifications, and occurrence-scoped approvals.
